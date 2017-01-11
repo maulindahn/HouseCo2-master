@@ -81,7 +81,7 @@ public class LoginActivity extends Activity {
             String email = loginEmail.getText().toString();
             String password = loginPassword.getText().toString();
 
-            if(email.equals("hana@coba.com") && password.equals("hana")){
+            if(email.equals("dimas@coba.com") && password.equals("dimas")){
                 // TODO: Implement your own authentication logic here.
                 new android.os.Handler().postDelayed(
                         new Runnable() {

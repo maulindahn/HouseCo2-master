@@ -65,5 +65,52 @@
             </meta-data>>
         </activity>
 
+        <activity android:name=".HelpActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ExpandMain"
+            android:label="Common Question"
+            android:parentActivityName=".HelpActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ExpandMain">
+            </meta-data>
+        </activity>
+
+        <activity android:name=".HelpReport"
+            android:label="Report"
+            android:parentActivityName=".HelpActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HelpReport">
+            </meta-data>
+        </activity>
+
+        <activity android:name=".HelpSIW"
+            android:label="Something Isnt Working"
+            android:parentActivityName=".HelpActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HelpSIW">
+            </meta-data>
+        </activity>
+
+        <activity android:name=".HelpFeedback"
+            android:label="FeedBack"
+            android:parentActivityName=".HelpActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HelpFeedback">
+            </meta-data>
+        </activity>
+
+        <activity android:name=".HelpRentalAg"
+            android:label="Rental Agreement"
+            android:parentActivityName=".HelpActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HelpRentalAg">
+            </meta-data>
+        </activity>
+
     </application>
 </manifest>
