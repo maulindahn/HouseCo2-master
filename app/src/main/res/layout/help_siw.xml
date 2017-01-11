@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tell Us What's Wrong"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:paddingTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Let us know the steps you take and the result/error you get. i.e 'when uploading an item,  I receive the error code xx'"
+            android:textSize="10dp"
+            android:textAlignment="inherit" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="5dp"
+                android:hint="Tell us"
+                android:textSize="10dp"
+                android:inputType="textCapSentences|textMultiLine"
+                android:padding="10dp"
+                android:textColor="@color/input"
+                android:background="@color/white"
+                android:textColorHint="@color/input_hint"
+                android:maxLength="2000"
+                android:maxLines="10"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnSendReport"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:background="@color/btn_bg"
+            android:text="send"
+            android:textStyle="bold"
+            android:textColor="@color/btn_text"
+            android:layout_marginLeft="330dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
