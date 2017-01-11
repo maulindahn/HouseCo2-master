@@ -1,19 +1,26 @@
 package com.example.hana.rentcostumes.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.hana.rentcostumes.ExpandMain;
+import com.example.hana.rentcostumes.HelpFeedback;
+import com.example.hana.rentcostumes.HelpRentalAg;
+import com.example.hana.rentcostumes.HelpReport;
+import com.example.hana.rentcostumes.HelpSIW;
 import com.example.hana.rentcostumes.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link HelpFragment.OnFragmentInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link HelpFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -61,12 +68,71 @@ public class HelpFragment extends Fragment {
         }
     }
 
+    /**@Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    Bundle savedInstanceState) {
+    // Inflate the layout for this fragment
+    return inflater.inflate(R.layout.fragment_help, container, false);
+    }*/
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.help_activity, container, false);
+        View v = inflater.inflate(R.layout.activity_help, container, false);
+        TextView textView = (TextView)v.findViewById(R.id.CommonQ);
+        textView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), ExpandMain.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        TextView textView2 = (TextView)v.findViewById(R.id.Report);
+        textView2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), HelpReport.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        TextView textView3 = (TextView)v.findViewById(R.id.SIW);
+        textView3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), HelpSIW.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        TextView textView4 = (TextView)v.findViewById(R.id.Feedback);
+        textView4.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), HelpFeedback.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        TextView textView5 = (TextView)v.findViewById(R.id.RentalAg);
+        textView5.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), HelpRentalAg.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        return v;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
