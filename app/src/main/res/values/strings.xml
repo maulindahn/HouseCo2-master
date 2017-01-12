@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">houseco</string>
+    <string name="app_name">House.CO</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -21,6 +21,7 @@
     <string name="btn_link_to_forgot">"Forgot your login details? Get help signing in."</string>
     <string name="btn_link_to_licenceagreements">"I accept House.co's Term of Service and Privacy Policy"</string>
 
+    <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
     <string name="username">"@maulindahn"</string>
     <string name="quantity_hint">1, 2, 3 or more</string>
     <string name="eventdate_hint">mm/dd/yyyy</string>
@@ -44,7 +45,25 @@
     <string name="insurance_price">Insurance</string>
     <string name="payment_total">Total Payment</string>
 
+    <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+    <string name="btn_back"><![CDATA[<< Back]]></string>
+    <string name="btn_reset_password">Reset Password</string>
+
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="send_password_reset_email">Send Password reset email</string>
+    <string name="remove_user">Remove user</string>
+    <string name="prompt_password">Current Password</string>
+    <string name="new_pass">New Password</string>
+    <string name="hint_new_email">New Email</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_send">Send</string>
+    <string name="btn_remove">Remove</string>
+    <string name="btn_sign_out">Sign Out</string>
+
     <string name="checkout">Checkout</string>
+    <string name="auth_success">Sign Up Success</string>
     <string name="auth_failed">Sign Up Failed</string>
 
     <!-- TODO: Remove or change this placeholder text -->

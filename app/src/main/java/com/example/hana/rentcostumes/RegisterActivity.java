@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(RegisterActivity.this, "mmmmmmmmmmmmmmmmmmm", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(RegisterActivity.this, "mmmmmmmmmmmmmmmmmmm", Toast.LENGTH_SHORT).show();
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
@@ -125,21 +125,12 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-                        if(task.isSuccessful()){
-                            Toast.makeText(RegisterActivity.this, R.string.auth_failed,
+                        if (task.isSuccessful()) {
+                            Toast.makeText(RegisterActivity.this, R.string.auth_success,
                                     Toast.LENGTH_SHORT).show();
-
-//                          new android.os.Handler().postDelayed(
-//                                  new Runnable() {
-//                                      public void run() {
-//                                          // On complete call either onSignupSuccess or onSignupFailed
-//                                          // depending on success
-//                                          onSignupSuccess();
-//                                          // onSignupFailed();
-//                                          progressDialog.dismiss();
-//                                      }
-//                                  }, 2000);
+                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
+                        progressDialog.dismiss();
                     }
                 });
     }
@@ -150,6 +141,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
         setResult(RESULT_OK, null);
+
         finish();
     }
 
@@ -196,8 +188,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             inputUsername.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            inputPassword.setError("between 4 and 10 alphanumeric characters");
+        if (password.isEmpty() || password.length() < 6 || password.length() > 10) {
+            inputPassword.setError("between 6 and 10 alphanumeric characters");
             valid = false;
         } else {
             inputPassword.setError(null);

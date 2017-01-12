@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -42,7 +45,6 @@ public class LoginActivity extends Activity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(LoginActivity.this, "mmmmmmmmmmmmmmmmmmm", Toast.LENGTH_SHORT).show();
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
@@ -90,7 +92,7 @@ public class LoginActivity extends Activity {
             onLoginFailed();
             return;
         }
-        btnLogin.setEnabled(false);
+        //btnLogin.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.MyTheme_ProgressDialog_);
         progressDialog.setIndeterminate(true);
@@ -100,21 +102,40 @@ public class LoginActivity extends Activity {
         String email = loginEmail.getText().toString();
         String password = loginPassword.getText().toString();
 
-        if(email.equals("dimas@coba.com") && password.equals("dimas")){
+        if(email.equals("dimsar@gmail.com") && password.equals("dimsar")){
             // TODO: Implement your own authentication logic here.
+
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+
+                            // If sign in fails, display a message to the user. If sign in succeeds
+                            // the auth state listener will be notified and logic to handle the
+                            // signed in user can be handled in the listener.
+                            if (!task.isSuccessful()) {
+                                Log.w(TAG, "signInWithEmail:failed", task.getException());
+                                Toast.makeText(LoginActivity.this, R.string.auth_failed,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            // ...
+                        }
+                    });
+            // Dimas Sartika on 12/01/2017
             new android.os.Handler().postDelayed(
                     new Runnable() {
                         public void run() {
                             // On complete call either onLoginSuccess or onLoginFailed
                             onLoginSuccess();
-                            // onLoginFailed();
                             progressDialog.dismiss();
                         }
                     }, 3000);
         } else {
-            Toast.makeText(getApplicationContext(), "Salah", Toast.LENGTH_SHORT).show();
+            onLoginFailed();
+            progressDialog.dismiss();
         }
-
 
     }
 
@@ -127,7 +148,7 @@ public class LoginActivity extends Activity {
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Login Failed", Toast.LENGTH_LONG).show();
         btnLogin.setEnabled(true);
     }
 
@@ -143,8 +164,8 @@ public class LoginActivity extends Activity {
             loginEmail.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            loginPassword.setError("between 4 and 10 alphanumeric characters");
+        if (password.isEmpty() || password.length() < 6 || password.length() > 10) {
+            loginPassword.setError("between 6 and 10 alphanumeric characters");
             valid = false;
         } else {
             loginPassword.setError(null);

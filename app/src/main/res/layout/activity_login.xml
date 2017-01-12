@@ -94,6 +94,7 @@
 
     </LinearLayout>
 
+
     <!-- Link to Register Screen -->
     <Button
         android:id="@+id/btnLinkToRegister"
