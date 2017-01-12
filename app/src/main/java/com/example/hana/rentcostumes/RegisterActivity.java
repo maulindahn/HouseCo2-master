@@ -119,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         String password = inputPassword.getText().toString();
 
 
-        // DIMAS SARTIKA Sign Up FIrebase
+        //DIMAS SARTIKA Sign Up FIrebase
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

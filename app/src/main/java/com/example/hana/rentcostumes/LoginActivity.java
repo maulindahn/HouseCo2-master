@@ -211,7 +211,7 @@ public class LoginActivity extends Activity {
     }
 
 
-    //DIMAS SARTIKA
+    //DIMAS SARTIKA Login Firebase
     @Override
     public void onStart() {
         super.onStart();
