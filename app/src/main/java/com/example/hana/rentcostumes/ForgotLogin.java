@@ -34,12 +34,12 @@ public class ForgotLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forgot_login);
 
-        /*inputEmail = (EditText) findViewById(R.id.email);
+        inputEmail = (EditText) findViewById(R.id.email);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
         btnBack = (Button) findViewById(R.id.btn_back);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        //firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class ForgotLogin extends AppCompatActivity {
                             }
                         });
             }
-        });*/
+        });
     }
 
     private void tombolback() {
