@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by user pc on 26/10/2016.
@@ -35,8 +36,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     String list_gender [] = {"Gender", "Male", "Female"};
     private static final String TAG = "SignupActivity";
     private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
-//
+    //
     @Override
     public void onBackPressed() {
         Intent intent = new Intent (this, LoginActivity.class);
@@ -63,9 +65,28 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        //ActionBar actionBar = getActionBar();
-        //if(actionBar!=null)
-        //    actionBar.setDisplayHomeAsUpEnabled(false);
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Toast.makeText(RegisterActivity.this, "mmmmmmmmmmmmmmmmmmm", Toast.LENGTH_SHORT).show();
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
+
+
+
+
+//        ActionBar actionBar = getActionBar();
+//        if(actionBar!=null)
+//            actionBar.setDisplayHomeAsUpEnabled(false);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             return;
         }
 
+
         //btnRegister.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this, R.style.MyTheme_ProgressDialog_);
@@ -96,36 +118,30 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         String uname = inputUsername.getText().toString();
         String password = inputPassword.getText().toString();
 
+
         // TODO: Implement your own signup logic here.
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
                         if(task.isSuccessful()){
-                            new android.os.Handler().postDelayed(
-                                    new Runnable() {
-                                        public void run() {
-                                            // On complete call either onSignupSuccess or onSignupFailed
-                                            // depending on success
-                                            onSignupSuccess();
-                                            // onSignupFailed();
-                                            progressDialog.dismiss();
-                                        }
-                                    }, 2000);
+                            Toast.makeText(RegisterActivity.this, R.string.auth_failed,
+                                    Toast.LENGTH_SHORT).show();
+
+//                          new android.os.Handler().postDelayed(
+//                                  new Runnable() {
+//                                      public void run() {
+//                                          // On complete call either onSignupSuccess or onSignupFailed
+//                                          // depending on success
+//                                          onSignupSuccess();
+//                                          // onSignupFailed();
+//                                          progressDialog.dismiss();
+//                                      }
+//                                  }, 2000);
                         }
                     }
                 });
-
-        /*new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);*/
     }
 
 
@@ -209,5 +225,19 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            firebaseAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }

@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by user pc on 26/10/2016.
@@ -23,7 +25,8 @@ public class LoginActivity extends Activity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
     private Button btnLogin, btnLinkToRegister, btnLinkToForgotLogin;
     private EditText loginEmail, loginPassword;
-    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     SessionActivity sessionActivity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,24 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
 
         //Get Firebase auth instance
-        mFirebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         sessionActivity = new SessionActivity();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Toast.makeText(LoginActivity.this, "mmmmmmmmmmmmmmmmmmm", Toast.LENGTH_SHORT).show();
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
 
         loginEmail = (EditText) findViewById(R.id.email);
         loginPassword = (EditText) findViewById(R.id.password);
@@ -64,75 +83,75 @@ public class LoginActivity extends Activity {
         });
     }
 
-        public void login() {
-            Log.d(TAG, "Login");
+    public void login() {
+        Log.d(TAG, "Login");
 
-            if (!validate()) {
-                onLoginFailed();
-                return;
-            }
-            btnLogin.setEnabled(false);
+        if (!validate()) {
+            onLoginFailed();
+            return;
+        }
+        btnLogin.setEnabled(false);
 
-            final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.MyTheme_ProgressDialog_);
-            progressDialog.setIndeterminate(true);
-            progressDialog.setMessage("Authenticating...");
-            progressDialog.show();
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.MyTheme_ProgressDialog_);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Authenticating...");
+        progressDialog.show();
 
-            String email = loginEmail.getText().toString();
-            String password = loginPassword.getText().toString();
+        String email = loginEmail.getText().toString();
+        String password = loginPassword.getText().toString();
 
-            if(email.equals("dimas@coba.com") && password.equals("dimas")){
-                // TODO: Implement your own authentication logic here.
-                new android.os.Handler().postDelayed(
-                        new Runnable() {
-                            public void run() {
-                                // On complete call either onLoginSuccess or onLoginFailed
-                                onLoginSuccess();
-                                // onLoginFailed();
-                                progressDialog.dismiss();
-                            }
-                        }, 3000);
-            } else {
-                Toast.makeText(getApplicationContext(), "Salah", Toast.LENGTH_SHORT).show();
-            }
-
-
+        if(email.equals("dimas@coba.com") && password.equals("dimas")){
+            // TODO: Implement your own authentication logic here.
+            new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            // On complete call either onLoginSuccess or onLoginFailed
+                            onLoginSuccess();
+                            // onLoginFailed();
+                            progressDialog.dismiss();
+                        }
+                    }, 3000);
+        } else {
+            Toast.makeText(getApplicationContext(), "Salah", Toast.LENGTH_SHORT).show();
         }
 
-        public void onLoginSuccess() {
-            btnLogin.setEnabled(true);
-            sessionActivity.setPreferences(this, "status", "isLoggedIn");
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(i);
-            finish();
+
+    }
+
+    public void onLoginSuccess() {
+        btnLogin.setEnabled(true);
+        sessionActivity.setPreferences(this, "status", "isLoggedIn");
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    public void onLoginFailed() {
+        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+        btnLogin.setEnabled(true);
+    }
+
+    public boolean validate() {
+        boolean valid = true;
+        String email = loginEmail.getText().toString();
+        String password = loginPassword.getText().toString();
+
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            loginEmail.setError("enter a valid email address");
+            valid = false;
+        } else {
+            loginEmail.setError(null);
         }
 
-        public void onLoginFailed() {
-            Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-            btnLogin.setEnabled(true);
+        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+            loginPassword.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            loginPassword.setError(null);
         }
 
-        public boolean validate() {
-            boolean valid = true;
-            String email = loginEmail.getText().toString();
-            String password = loginPassword.getText().toString();
-
-            if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                loginEmail.setError("enter a valid email address");
-                valid = false;
-            } else {
-                loginEmail.setError(null);
-            }
-
-            if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-                loginPassword.setError("between 4 and 10 alphanumeric characters");
-                valid = false;
-            } else {
-                loginPassword.setError(null);
-            }
-
-            return valid;
-        }
+        return valid;
+    }
 
     private void tombolback() {
         AlertDialog.Builder alert = new AlertDialog.Builder(LoginActivity.this);
@@ -160,6 +179,20 @@ public class LoginActivity extends Activity {
                 return true;
             default:
                 return super.onKeyDown(keyCode, event);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            firebaseAuth.removeAuthStateListener(mAuthListener);
         }
     }
 }

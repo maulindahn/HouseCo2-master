@@ -45,6 +45,7 @@
     <string name="payment_total">Total Payment</string>
 
     <string name="checkout">Checkout</string>
+    <string name="auth_failed">Sign Up Failed</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
