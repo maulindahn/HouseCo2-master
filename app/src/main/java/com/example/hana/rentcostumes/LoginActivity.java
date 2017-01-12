@@ -37,7 +37,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Get Firebase auth instance
+        //DIMAS SARTIKA Get Firebase auth instance
         firebaseAuth = FirebaseAuth.getInstance();
         sessionActivity = new SessionActivity();
 
@@ -56,6 +56,7 @@ public class LoginActivity extends Activity {
             }
         };
 
+        //HANA MAULINDA Setting Up Button
         loginEmail = (EditText) findViewById(R.id.email);
         loginPassword = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -86,6 +87,7 @@ public class LoginActivity extends Activity {
         });
     }
 
+    //HANA MAULINDA Toast and Validate Login
     public void login() {
         Log.d(TAG, "Login");
 
@@ -108,7 +110,7 @@ public class LoginActivity extends Activity {
             return;
         }
 
-        // [START sign_in_with_email]
+        //DIMAS SARTIKA [START sign_in_with_email]
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -141,7 +143,7 @@ public class LoginActivity extends Activity {
     }
 
 
-
+    //HANA MAULINDA Toast and Validate Login, KEYCODE_BACK
     public void onLoginSuccess() {
         Toast.makeText(LoginActivity.this, R.string.login_success,
                 Toast.LENGTH_SHORT).show();
@@ -208,6 +210,8 @@ public class LoginActivity extends Activity {
         }
     }
 
+
+    //DIMAS SARTIKA
     @Override
     public void onStart() {
         super.onStart();

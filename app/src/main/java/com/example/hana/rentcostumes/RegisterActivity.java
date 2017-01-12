@@ -63,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputGender.setAdapter(arrayAdapter);
 
+        //DIMAS SARTIKA FIrebase for SIGN UP/REGISTER
         firebaseAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -83,11 +84,11 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
 
 
+        /*ActionBar actionBar = getActionBar();
+        if(actionBar!=null)
+            actionBar.setDisplayHomeAsUpEnabled(false);*/
 
-//        ActionBar actionBar = getActionBar();
-//        if(actionBar!=null)
-//            actionBar.setDisplayHomeAsUpEnabled(false);
-
+        //HANA MAULINDA Toast and Validate Sign Up including Progress Dialog
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +105,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             return;
         }
 
-
         //btnRegister.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this, R.style.MyTheme_ProgressDialog_);
@@ -119,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         String password = inputPassword.getText().toString();
 
 
-        // TODO: Implement your own signup logic here.
+        // DIMAS SARTIKA Sign Up FIrebase
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -135,13 +135,12 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 });
     }
 
-
+    //HANA MAULINDA Toast and Validate Sign Up including Progress Dialog
     public void onSignupSuccess() {
         btnRegister.setEnabled(true);
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
         setResult(RESULT_OK, null);
-
         finish();
     }
 
@@ -219,6 +218,8 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+
+    //DIMAS SARTIKA Sign Up Firebase
     @Override
     public void onStart() {
         super.onStart();
