@@ -12,6 +12,7 @@ import android.widget.Spinner;
  * Created by user pc on 28/10/2016.
  */
 
+//HANA MAULINDA
 public class CheckoutCostume extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner inputSize;
 

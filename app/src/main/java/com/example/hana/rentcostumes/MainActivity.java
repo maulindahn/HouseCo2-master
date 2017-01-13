@@ -27,6 +27,8 @@ import com.example.hana.rentcostumes.fragment.RentedCostumeFragment;
 import com.example.hana.rentcostumes.fragment.SettingFragment;
 import com.example.hana.rentcostumes.fragment.UsedCostumeFragment;
 
+//HANA MAULINDA for Main Activity Include Menu Drawer and its fragments
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         ExploreFragment.OnFragmentInteractionListener, RentFragment.OnFragmentInteractionListener, UsedCostumeFragment.OnFragmentInteractionListener,

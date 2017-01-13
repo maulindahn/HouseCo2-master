@@ -22,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
  * Created by user pc on 27/10/2016.
  */
 
+//HANA MAULINDA for Forgot Login Activity
+
 public class ForgotLogin extends AppCompatActivity {
 
     private EditText inputEmail;

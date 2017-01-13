@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
  * Created by user pc on 27/10/2016.
  */
 
+//Hana Maulinda for Loading Screen
 public class LoadingScreen extends AppCompatActivity {
     SessionActivity sessionActivity;
 
