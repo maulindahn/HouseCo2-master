@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity
     //private Boolean exit = false;
     @Override
     public void onBackPressed() {
-        /*f (exit){
+        /*if (exit){
             finish();
         }*/
 
@@ -90,21 +90,36 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
+    //HANA MAULINDA Signing Out from Action Bar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                //Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                //startActivity(intent);
+                return true;
+            case R.id.action_signout:
+                final ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Signing Out...");
+                progressDialog.show();
+                new android.os.Handler().postDelayed(
+                        new Runnable() {
+                            public void run() {
+                                progressDialog.dismiss();
+                                sessionActivity.clearPreferences(getApplicationContext(), "status");
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(intent);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
+                            }
+                        }, 2000);
+            }
         return super.onOptionsItemSelected(item);
     }
 
