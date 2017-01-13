@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.example.hana.rentcostumes"
+        applicationId "com.houseco.hana.rentcostumes"
         minSdkVersion 17
         targetSdkVersion 24
         versionCode 1

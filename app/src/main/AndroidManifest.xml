@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hana.rentcostumes">
+    package="com.houseco.hana.rentcostumes">
 
     <application
         android:allowBackup="true"
@@ -9,107 +9,107 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".LoadingScreen">
+        <activity android:name="com.houseco.hana.rentcostumes.LoadingScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity"
+        <activity android:name="com.houseco.hana.rentcostumes.LoginActivity"
             android:label="Login"
-            android:parentActivityName=".LoadingScreen">
+            android:parentActivityName="com.houseco.hana.rentcostumes.LoadingScreen">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity">
+                android:value="com.houseco.hana.rentcostumes.LoginActivity">
             </meta-data>
         </activity>
 
-        <activity android:name=".ForgotLogin"
+        <activity android:name="com.houseco.hana.rentcostumes.ForgotLogin"
             android:label="Log In Help"
-            android:parentActivityName=".LoginActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.LoginActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity">
+                android:value="com.houseco.hana.rentcostumes.LoginActivity">
             </meta-data>
         </activity>
 
-        <activity android:name=".RegisterActivity"
+        <activity android:name="com.houseco.hana.rentcostumes.RegisterActivity"
             android:label="Sign Up"
-            android:parentActivityName=".LoginActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.LoginActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RegisterActivity">
+                android:value="com.houseco.hana.rentcostumes.RegisterActivity">
             </meta-data>>
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.houseco.hana.rentcostumes.MainActivity"
             android:label="House.co"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".LoginActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.LoginActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity">
+                android:value="com.houseco.hana.rentcostumes.MainActivity">
             </meta-data>>
         </activity>
-        <activity android:name=".CostumeDetails"
+        <activity android:name="com.houseco.hana.rentcostumes.CostumeDetails"
             android:label="Details"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.MainActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CostumeDetails">
+                android:value="com.houseco.hana.rentcostumes.CostumeDetails">
             </meta-data>>
         </activity>
 
-        <activity android:name=".CheckoutCostume"
+        <activity android:name="com.houseco.hana.rentcostumes.CheckoutCostume"
             android:label="Checkout"
-            android:parentActivityName=".CostumeDetails">
+            android:parentActivityName="com.houseco.hana.rentcostumes.CostumeDetails">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CheckoutCostume">
+                android:value="com.houseco.hana.rentcostumes.CheckoutCostume">
             </meta-data>>
         </activity>
 
-        <activity android:name=".HelpActivity"
+        <activity android:name="com.houseco.hana.rentcostumes.HelpActivity"
             android:label="Help"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.MainActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HelpActivity">
+                android:value="com.houseco.hana.rentcostumes.HelpActivity">
             </meta-data>>
         </activity>
 
-        <activity android:name=".ExpandMain"
+        <activity android:name="com.houseco.hana.rentcostumes.ExpandMain"
             android:label="Common Question"
-            android:parentActivityName=".HelpActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.HelpActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ExpandMain">
+                android:value="com.houseco.hana.rentcostumes.ExpandMain">
             </meta-data>
         </activity>
 
-        <activity android:name=".HelpReport"
+        <activity android:name="com.houseco.hana.rentcostumes.HelpReport"
             android:label="Report"
-            android:parentActivityName=".HelpActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.HelpActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HelpReport">
+                android:value="com.houseco.hana.rentcostumes.HelpReport">
             </meta-data>
         </activity>
 
-        <activity android:name=".HelpSIW"
+        <activity android:name="com.houseco.hana.rentcostumes.HelpSIW"
             android:label="Something Isnt Working"
-            android:parentActivityName=".HelpActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.HelpActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HelpSIW">
+                android:value="com.houseco.hana.rentcostumes.HelpSIW">
             </meta-data>
         </activity>
 
-        <activity android:name=".HelpFeedback"
+        <activity android:name="com.houseco.hana.rentcostumes.HelpFeedback"
             android:label="FeedBack"
-            android:parentActivityName=".HelpActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.HelpActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HelpFeedback">
+                android:value="com.houseco.hana.rentcostumes.HelpFeedback">
             </meta-data>
         </activity>
 
-        <activity android:name=".HelpRentalAg"
+        <activity android:name="com.houseco.hana.rentcostumes.HelpRentalAg"
             android:label="Rental Agreement"
-            android:parentActivityName=".HelpActivity">
+            android:parentActivityName="com.houseco.hana.rentcostumes.HelpActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".HelpRentalAg">
+                android:value="com.houseco.hana.rentcostumes.HelpRentalAg">
             </meta-data>
         </activity>
 
