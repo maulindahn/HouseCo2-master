@@ -23,7 +23,6 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 
 //HANA MAULINDA for Forgot Login Activity
-
 public class ForgotLogin extends AppCompatActivity {
 
     private EditText inputEmail;
