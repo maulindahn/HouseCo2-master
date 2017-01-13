@@ -7,6 +7,7 @@ package com.example.hana.rentcostumes;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+//DIMAS SARTIKA
 public class SessionActivity {
 
 
