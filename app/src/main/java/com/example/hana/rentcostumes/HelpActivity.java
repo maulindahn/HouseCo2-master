@@ -10,6 +10,7 @@ import android.widget.TextView;
  * Created by Annisa on 12/17/2016.
  */
 
+//ANNISA NURSYA'S
 public class HelpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
